@@ -2,6 +2,9 @@
 # You can delete these comments, but do not change the name of this file
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 
+import time
+import random
+
 PLAYER_BOARD = [["~"] * 10 for i in range(10)]
 COMPUTER_BOARD = [["~"] * 10 for i in range(10)]
 PLAYER_TARGET_BOARD = [["~"] * 10 for i in range(10)]
