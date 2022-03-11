@@ -29,5 +29,10 @@ def welcome_message():
     print("Welcome to The Line of Battle")
     username = input("What is your name? ")
     print("Prepare for battle, Admiral " + username + "!")
+    if len(username) == 0:
+        print("Please enter a name")
+        return False
+    else:
+        return True
 
 welcome_message()
