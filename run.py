@@ -13,7 +13,6 @@ COMPUTER_TARGET_BOARD = [["~"] * 10 for i in range(10)]
 def welcome_message():
     """
     Introduction screen
-    Input field for player to place their name
     """
     print("""
             ____|____ ___|__
@@ -27,6 +26,26 @@ def welcome_message():
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~      
     """)
     print("Welcome to The Line of Battle")
+    time.sleep(5)
+    print("""
+    Your fleet has been ordered to sea to track and defeat the enemy.
+    After three weeks of sailing, the enemy fleet is in sight.
+    The drums sound to beat to quarters!
+    """)
+    time.sleep(5)
+    print("The battle is waged on a 10 x 10 grid")
+    print("You must sink the computer's vessels before yours are sunk")
+    print("Your fleet consists of 5 ships")
+    print("You have 1 first rate that covers 5 spaces")
+    print("You have 1 second rate that covers 4 spaces")
+    print("You have 2 frigates that each cover 3 spaces")
+    print("You have 1 gunboat that covers 2 spaces")
+    print("")
+    
+def username_input():
+    """
+    Input takes the name of the user for game personalisation
+    """
     username = input("What is your name? ")
     print("Prepare for battle, Admiral " + username + "!")
     if len(username) == 0:
@@ -36,3 +55,4 @@ def welcome_message():
         return True
 
 welcome_message()
+username_input()
