@@ -25,22 +25,22 @@ def welcome_message():
   \\   o o o o  o o o o o o o o  /
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~      
     """)
-    print("Welcome to The Line of Battle")
+    print("Welcome to The Line of Battle \n")
     time.sleep(5)
-    print("""
-    Your fleet has been ordered to sea to track and defeat the enemy.
-    After three weeks of sailing, the enemy fleet is in sight.
-    The drums sound to beat to quarters!
-    """)
+    print("Your fleet has been ordered to sea to track and defeat the enemy.")
+    print("After three weeks of sailing, the enemy fleet is in sight.")
+    print("The drums sound to beat to quarters!")
+    
     time.sleep(5)
     print("The battle is waged on a 10 x 10 grid")
-    print("You must sink the computer's vessels before yours are sunk")
     print("Your fleet consists of 5 ships")
     print("You have 1 first rate that covers 5 spaces")
     print("You have 1 second rate that covers 4 spaces")
     print("You have 2 frigates that each cover 3 spaces")
     print("You have 1 gunboat that covers 2 spaces")
-    print("")
+    print("Alternate turns with the computer firing shots")
+    print("You must sink the computer's vessels before yours are sunk")
+    time.sleep(5)
     
 def username_input():
     """
@@ -48,7 +48,7 @@ def username_input():
     """
     print("What is your name Admiral?")
     while True:
-        username = input("Enter the name you wish to go by:")
+        username = input("Enter the name you wish to go by: ")
         if name_check(username):
             break
     print("Prepare for battle, Admiral " + username + "!")
@@ -66,5 +66,7 @@ def name_check(username):
         return True
 
 
-#welcome_message()
+welcome_message()
 username_input()
+#place_ships()
+#place_computer_ships()
