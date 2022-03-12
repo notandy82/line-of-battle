@@ -46,13 +46,25 @@ def username_input():
     """
     Input takes the name of the user for game personalisation
     """
-    username = input("What is your name? ")
+    print("What is your name Admiral?")
+    while True:
+        username = input("Enter the name you wish to go by:")
+        if name_check(username):
+            break
     print("Prepare for battle, Admiral " + username + "!")
-    if len(username) == 0:
-        print("Please enter a name")
+    return username
+
+def name_check(username):
+    """
+    This ensures the player has entered at least one character for
+    a name and tells the player to enter a name.
+    """
+    if len(username) ==  0:
+        print("Please enter at least 1 character")
         return False
     else:
         return True
 
-welcome_message()
+
+#welcome_message()
 username_input()
