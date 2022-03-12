@@ -5,10 +5,13 @@
 import time
 import random
 
+# Player and computer boards
 PLAYER_BOARD = [["~"] * 10 for i in range(10)]
 COMPUTER_BOARD = [["~"] * 10 for i in range(10)]
-PLAYER_TARGET_BOARD = [["~"] * 10 for i in range(10)]
-COMPUTER_TARGET_BOARD = [["~"] * 10 for i in range(10)]
+
+# List of ship lengths for the game
+SHIPS = [2, 3, 3, 4, 5]
+
 
 def welcome_message():
     """
