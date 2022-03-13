@@ -33,7 +33,6 @@ def welcome_message():
     print("Your fleet has been ordered to sea to track and defeat the enemy.")
     print("After three weeks of sailing, the enemy fleet is in sight.")
     print("The drums sound to beat to quarters!")
-    
     time.sleep(5)
     print("The battle is waged on a 10 x 10 grid")
     print("Your fleet consists of 5 ships")
@@ -46,7 +45,8 @@ def welcome_message():
     print("A miss is shown with \u001b[34mO\u001b[0m")
     print("You must sink the computer's vessels before yours are sunk")
     time.sleep(5)
-    
+
+
 def username_input():
     """
     Input takes the name of the user for game personalisation
@@ -59,12 +59,13 @@ def username_input():
     print("Prepare for battle, Admiral " + username + "!")
     return username
 
+
 def name_check(username):
     """
     This ensures the player has entered at least one character for
     a name and tells the player to enter a name.
     """
-    if len(username) ==  0:
+    if len(username) == 0:
         print("Please enter at least 1 character")
         return False
     else:
@@ -73,5 +74,5 @@ def name_check(username):
 
 welcome_message()
 username_input()
-#place_ships()
-#place_computer_ships()
+# place_ships()
+# place_computer_ships()
