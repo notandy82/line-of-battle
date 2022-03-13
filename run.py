@@ -42,6 +42,8 @@ def welcome_message():
     print("You have 2 frigates that each cover 3 spaces")
     print("You have 1 gunboat that covers 2 spaces")
     print("Alternate turns with the computer firing shots")
+    print("A hit is shown with \u001b[31mX\u001b[0m")
+    print("A miss is shown with \u001b[34mO\u001b[0m")
     print("You must sink the computer's vessels before yours are sunk")
     time.sleep(5)
     
