@@ -3,11 +3,11 @@
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 
 import time
-import random
+from random import randint
 
 # Player and computer boards
-PLAYER_BOARD = [["~"] * 10 for i in range(10)]
-COMPUTER_BOARD = [["~"] * 10 for i in range(10)]
+PLAYER_BOARD = [["~"] * 9 for i in range(9)]
+COMPUTER_BOARD = [["~"] * 9 for i in range(9)]
 
 # List of ship lengths for the game
 SHIPS = [2, 3, 3, 4, 5]
@@ -34,7 +34,7 @@ def welcome_message():
     print("After three weeks of sailing, the enemy fleet is in sight.")
     print("The drums sound to beat to quarters!")
     time.sleep(5)
-    print("The battle is waged on a 10 x 10 grid")
+    print("The battle is waged on a 9 x 9 grid")
     print("Your fleet consists of 5 ships")
     print("You have 1 first rate that covers 5 spaces")
     print("You have 1 second rate that covers 4 spaces")
