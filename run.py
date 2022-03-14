@@ -104,9 +104,9 @@ def place_computer_ships(board):
     """
     for ship in range(5):
         ship_column, ship_row = randint(0,9), randint(0,9)
-        while COMPUTER_BOARD[ship_column][ship_row] == "X":
+        while COMPUTER_BOARD[ship_column][ship_row] == "@":
             ship_column, ship_row = randint(0,9), randint(0,9)
-        board[ship_column][ship_row] = "X"
+        board[ship_column][ship_row] = "@"
 
 
 def place_player_ships(PLAYER_BOARD):
@@ -137,6 +137,21 @@ def fire():
         row = input("Enter the row 1 - 9 you wish to fire at: ")
     return convert_letters[column], int(row) - 1
         
+
+player_hits = 0
+computer_hits = 0
+
+def player_turn
+    if PLAYER_GUESS_BOARD[column][row] == "O":
+        print("You've already fired there, choose somewhere else!")
+    elif COMPUTER_BOARD[column][row] = "@":
+        print("By golly you've hit 'em!")
+        PLAYER_GUESS_BOARD[column][row] = "\u001b[31mX\u001b[0m"
+        player_hits += 1
+    else:
+        print("You missed!")
+        PLAYER_GUESS_BOARD[column][row] = "O"
+
 
 
 # welcome_message()
