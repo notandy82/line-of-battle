@@ -15,7 +15,17 @@ COMPUTER_GUESS_BOARD = [["\u001b[34m~\u001b[0m"] * 9 for i in range(9)]
 # SHIPS = [2, 3, 3, 4, 5]
 
 # Letter to number conversion for coordinate system
-convert_letters = {"A": 0, "B": 1, "C": 2, "D": 3, "E": 4, "F": 5, "G": 6, "H": 7, "I": 8}
+convert_letters = {
+    "A": 0
+    "B": 1
+    "C": 2
+    "D": 3
+    "E": 4
+    "F": 5
+    "G": 6
+    "H": 7
+    "I": 8
+    }
 
 def print_board(board):
     """
@@ -99,7 +109,7 @@ def place_computer_ships(board):
         board[ship_column][ship_row] = "X"
 
 
-def place_ships(PLAYER_BOARD):
+def place_player_ships(PLAYER_BOARD):
     """
     Function for player to place ships
     """
@@ -111,6 +121,23 @@ def place_ships(PLAYER_BOARD):
     while row not in "123456789":
         print("Please enter a valid row")
         row = input("Choose a row 1 - 9 to place your ship")
+
+
+def fire():
+    """
+    Function receives player coordinate input for attack
+    """
+    column = input("Enter the column A - I you wish to fire at: ")
+    while column not in "ABCDEFGHI":
+        print("Please enter a valid column")
+        column = input("Enter the column A - I you wish to fire at: ")
+    row = input("Enter the row 1 - 9 you wish to fire at: ")
+    while row not in "123456789":
+        print("Please enter a valid row")
+        row = input("Enter the row 1 - 9 you wish to fire at: ")
+    return convert_letters[column], int(row) - 1
+        
+
 
 # welcome_message()
 # username_input()
