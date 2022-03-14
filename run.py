@@ -16,16 +16,16 @@ COMPUTER_GUESS_BOARD = [["\u001b[34m~\u001b[0m"] * 9 for i in range(9)]
 
 # Letter to number conversion for coordinate system
 convert_letters = {
-    "A": 0
-    "B": 1
-    "C": 2
-    "D": 3
-    "E": 4
-    "F": 5
-    "G": 6
-    "H": 7
-    "I": 8
-    }
+    "A": 0,
+    "B": 1,
+    "C": 2,
+    "D": 3,
+    "E": 4,
+    "F": 5,
+    "G": 6,
+    "H": 7,
+    "I": 8,
+}
 
 def print_board(board):
     """
