@@ -138,13 +138,15 @@ def fire():
     return convert_letters[column], int(row) - 1
         
 
-player_hits = 0
-computer_hits = 0
 
-def player_turn
-    if PLAYER_GUESS_BOARD[column][row] == "O":
+def player_turn():
+    """
+    Determines if player's shot is a hit or miss
+    """
+    if PLAYER_GUESS_BOARD[column][row] == "O" or "\u001b[31mX\u001b[0m":
         print("You've already fired there, choose somewhere else!")
-    elif COMPUTER_BOARD[column][row] = "@":
+        fire()
+    elif COMPUTER_BOARD[column][row] == "@":
         print("By golly you've hit 'em!")
         PLAYER_GUESS_BOARD[column][row] = "\u001b[31mX\u001b[0m"
         player_hits += 1
@@ -153,6 +155,27 @@ def player_turn
         PLAYER_GUESS_BOARD[column][row] = "O"
 
 
+def computer_shot():
+    """
+    Random integers selected to determine computer's target
+    """
+    column = randint(0 - 8)
+    row = randint(0 - 8)
+    check_computer_shot()
+
+def check_computer_shot()
+    if COMPUTER_GUESS_BOARD[column][row] == "O" or "\u001b[31mX\u001b[0m":
+        computer_shot()
+    elif PLAYER_BOARD[column][row] == "@":
+        print("Admiral, we've been hit!")
+        computer_hits += 1
+    else:
+        print("They missed us, Admiral")
+        COMPUTER_GUESS_BOARD[column][row] = "O"
+
+
+player_hits = 0
+computer_hits = 0
 
 # welcome_message()
 # username_input()
