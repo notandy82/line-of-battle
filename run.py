@@ -117,7 +117,7 @@ def place_ship(board):
                         else:
                             for i in range(row, row + ship_length):
                                 board[column][i] = "@"
-                            break
+                        break
             else:
                 place_ship = True
                 print("Place ship with a length of " + str(ship_length))
