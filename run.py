@@ -118,21 +118,24 @@ def place_ship(board):
                             for i in range(row, row + ship_length):
                                 board[column][i] = "@"
                             break
-                else:
-                    place_ship = True
-                    print("Place ship with a length of " + str(ship_length))
-                    column, row, direction = player_input(place_ship)
-                    if ship_fit(ship_length, column, row, direction):
-                        if ship_overlap(board, column, row, direction,
-                                        ship_length):
-                            if direction == "H":
-                                for i in range(column, column + ship_length):
-                                    board[i][row] = "@"
-                            else:
-                                for i in range(row, row + ship_length):
-                                    board[column][i] = "@"
-                            print_board(PLAYER_BOARD)
-                            break
+            else:
+                place_ship = True
+                print("Place ship with a length of " + str(ship_length))
+                column, row, direction = player_input(place_ship)
+                if ship_fit(ship_length, column, row, direction):
+                    if ship_overlap(board, column, row, direction,
+                                    ship_length):
+                        print("We can't go there, Admiral!")
+                    else:
+                        print("That'll do nicely, Admiral")
+                        if direction == "H":
+                            for i in range(column, column + ship_length):
+                                board[i][row] = "@"
+                        else:
+                            for i in range(row, row + ship_length):
+                                board[column][i] = "@"
+                        print_board(PLAYER_BOARD)
+                        break
 
 
 def ship_fit(SHIP_LENGTH, column, row, direction):
