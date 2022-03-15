@@ -109,6 +109,7 @@ def name_check(username):
             ship_column, ship_row = randint(0, 9), randint(0, 9)
         board[ship_column][ship_row] = "X"
 
+
 def place_ships(board):
     """
     Combines functions to place player ships and computer ships
@@ -146,7 +147,16 @@ def ship_fit(SHIPS, column, row, direction):
     """
     Determines if ship fits on board
     """
-    pass
+    if direction == "V":
+        if row + ship > 9:
+            return False
+        else:
+            return True
+    else:
+        if column + ship > 9:
+            return False
+        else:
+            return True
 
 
 def ship_overlap(board, column, row, direction, ship):
