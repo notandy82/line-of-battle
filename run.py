@@ -32,7 +32,7 @@ def print_board(board):
     """
     Creates the boards for the player and computer
     """
-    print("  A B C D E F J H I")
+    print("  A B C D E F G H I")
     print("  _________________")
     row_number = 1
     for row in board:
@@ -227,5 +227,5 @@ computer_hits = 0
 
 place_ship(COMPUTER_BOARD)
 print_board(COMPUTER_BOARD)
-# print_board(PLAYER_BOARD)
-# place_ship(PLAYER_BOARD)
+print_board(PLAYER_BOARD)
+place_ship(PLAYER_BOARD)
