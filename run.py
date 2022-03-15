@@ -99,7 +99,7 @@ def name_check(username):
         return True
 
 
-def place_ships(board):
+def place_ship(board):
     """
     Combines functions to place player ships and computer ships
     """
@@ -107,28 +107,28 @@ def place_ships(board):
         while True:
             if board == COMPUTER_BOARD:
                 direction, column, row = random.choice(["H", "V"]), \
-                random.randint(0, 8), random.randint(0, 8)
+                    random.randint(0, 8), random.randint(0, 8)
                 if ship_fit(ship_length, column, row, direction):
                     if ship_overlap(board, column, row, direction, ship_length) == False:
-                        if direction == "V":
-                            for i in range(row, row + ship_length):
-                                board[i][row] = "@"
-                        else:
+                        if direction == "H":
                             for i in range(column, column + ship_length):
-                                board[column][i] = "@"
+                                board[column][i] = "@"                            
+                        else:
+                            for i in range(row, row + ship_length):
+                                board[i][row] = "@"                            
                             break
             else:
                 place_ship = True
                 print("Where will you place your ship with a length of " + str(ship_length))
-                column, row, direction = user_input(place_ship)
+                column, row, direction = player_input(place_ship)
                 if ship_fit(ship_length, column, row, direction):
                     if ship_overlap(board, column, row, direction, ship_length) == False:
-                        if direction == "V":
+                        if direction == "H":
+                            for i in range(column, column + ship_length):
+                                board[i][row] = "@"                            
+                        else:
                             for i in range(row, row + ship_length):
                                 board[column][i] = "@"
-                        else:
-                            for i in range(column, column + ship_length):
-                                board[i][row] = "@"
                         print_board(PLAYER_BOARD)
                         break
 
@@ -163,59 +163,31 @@ def ship_overlap(board, column, row, direction, ship_length):
                 return True
     return False
 
-
-# def fire():
-    """
-    Function receives player coordinate input for attack
-    """
-    column = input("Enter the column A - I you wish to fire at: ")
-    while column not in "ABCDEFGHI":
-        print("Please enter a valid column")
-        column = input("Enter the column A - I you wish to fire at: ")
-    row = input("Enter the row 1 - 9 you wish to fire at: ")
-    while row not in "123456789":
-        print("Please enter a valid row")
-        row = input("Enter the row 1 - 9 you wish to fire at: ")
-    return convert_letters[column], int(row) - 1
-
-
-# def player_turn():
-    """
-    Determines if player's shot is a hit or miss
-    """
-    if PLAYER_GUESS_BOARD[column][row] == "O" or "\u001b[31mX\u001b[0m":
-        print("You've already fired there, choose somewhere else!")
-        fire()
-    elif COMPUTER_BOARD[column][row] == "X":
-        print("By golly you've hit 'em!")
-        PLAYER_GUESS_BOARD[column][row] = "\u001b[31mX\u001b[0m"
-        player_hits += 1
-    else:
-        print("You missed!")
-        PLAYER_GUESS_BOARD[column][row] = "O"
-
-
-# def computer_shot():
-    """
-    Random integers selected to determine computer's target
-    """
-    column = randint(0 - 8)
-    row = randint(0 - 8)
-    check_computer_shot()
-
-
-# def check_computer_shot():
-    """
-    Determines if computer shot is a hit or miss, or a repeat shot
-    """
-    if COMPUTER_GUESS_BOARD[column][row] == "O" or "\u001b[31mX\u001b[0m":
-        computer_shot()
-    elif PLAYER_BOARD[column][row] == "X":
-        print("Admiral, we've been hit!")
-        computer_hits += 1
-    else:
-        print("They missed us, Admiral")
-        COMPUTER_GUESS_BOARD[column][row] = "O"
+def player_input(place_ship):
+    if place_ship == True:
+        while True:
+            try:
+                direction = input("Choose a direction (H or V): ")
+                if direction == "H" or direction == "V":
+                    break
+            except TypeError:
+                print("Enter H or V")
+        while True:
+            try:
+                column = input("Choose a column A - I for your ship: ")
+                if column in "ABCDEFGHI":
+                    column = convert_letters[column]
+                    break
+            except KeyError:
+                print("Enter a letter A-I")
+        while True:
+            try:
+                row = input("Choose a row 1 - 9 for your ship: ")
+                if row in "123456789":
+                    row = int(row) - 1
+                    break
+            except ValueError:
+                print("Enter a number 1 - 9")
 
 
 player_hits = 0
@@ -224,8 +196,7 @@ computer_hits = 0
 # welcome_message()
 # username_input()
 
-# place_ships(COMPUTER_BOARD)
-# print_board(COMPUTER_BOARD)
+place_ship(COMPUTER_BOARD)
+print_board(COMPUTER_BOARD)
 print_board(PLAYER_BOARD)
-# place_ships(PLAYER_BOARD)
-
+place_ship(PLAYER_BOARD)
