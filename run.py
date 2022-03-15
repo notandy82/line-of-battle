@@ -12,7 +12,7 @@ COMPUTER_BOARD = [["\u001b[34m~\u001b[0m"] * 9 for i in range(9)]
 COMPUTER_GUESS_BOARD = [["\u001b[34m~\u001b[0m"] * 9 for i in range(9)]
 
 # List of ship lengths for the game
-# SHIPS = [2, 3, 3, 4, 5]
+SHIPS = [2, 3, 3, 4, 5]
 
 # Letter to number conversion for coordinate system
 convert_letters = {
@@ -24,7 +24,8 @@ convert_letters = {
     "F": 5,
     "G": 6,
     "H": 7,
-    "I": 8}
+    "I": 8
+}
 
 
 def print_board(board):
@@ -98,7 +99,7 @@ def name_check(username):
         return True
 
 
-def place_computer_ships():
+# def place_computer_ships():
     """
     Random placement for the computer's ships
     """
@@ -107,6 +108,16 @@ def place_computer_ships():
         while COMPUTER_BOARD[ship_column][ship_row] == "X":
             ship_column, ship_row = randint(0, 9), randint(0, 9)
         board[ship_column][ship_row] = "X"
+
+def place_ships(board):
+    """
+    Combines functions to place player ships and computer ships
+    """
+    for ship in SHIPS:
+        while True:
+            if board == COMPUTER_BOARD:
+                direction, column, row = random.choice(["H", "V"]), random.randint(0, 8), random.randint(0, 8)
+                
 
 
 def place_player_ships():
