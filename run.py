@@ -115,7 +115,7 @@ def place_ship(board):
                                 board[column][i] = "@"                            
                         else:
                             for i in range(row, row + ship_length):
-                                board[i][row] = "@"                            
+                                board[i][row] = "@"
                             break
             else:
                 place_ship = True
@@ -125,7 +125,7 @@ def place_ship(board):
                     if ship_overlap(board, column, row, direction, ship_length) == False:
                         if direction == "H":
                             for i in range(column, column + ship_length):
-                                board[i][row] = "@"                            
+                                board[i][row] = "@"
                         else:
                             for i in range(row, row + ship_length):
                                 board[column][i] = "@"
@@ -164,6 +164,9 @@ def ship_overlap(board, column, row, direction, ship_length):
     return False
 
 def player_input(place_ship):
+    """
+    Input for the player to place ships and select target
+    """
     if place_ship == True:
         while True:
             try:
@@ -188,13 +191,32 @@ def player_input(place_ship):
                     break
             except ValueError:
                 print("Enter a number 1 - 9")
+        return column, row, direction
+    else:
+        while True:
+            try:
+                column = input("Choose the column to fire at A - I: ")
+                if column in "ABCDEFGHI":
+                    column = convert_letters[column]
+                    break
+            except KeyError:
+                print("Enter a valid letter A - I")
+        while True:
+            try:
+                row = input("Enter the row to fire at 1 - 9: ")
+                if row in "123456789":
+                    row = int(row) - 1
+                    break
+            except ValueError:
+                print("Enter a valid number 1 - 9")
+        return column, row
 
 
 player_hits = 0
 computer_hits = 0
 
-# welcome_message()
-# username_input()
+welcome_message()
+username_input()
 
 place_ship(COMPUTER_BOARD)
 print_board(COMPUTER_BOARD)
