@@ -117,6 +117,29 @@ def place_ships(board):
         while True:
             if board == COMPUTER_BOARD:
                 direction, column, row = random.choice(["H", "V"]), random.randint(0, 8), random.randint(0, 8)
+                if ship_fit(SHIPS, column, row, direction):
+                    if ship_overlap(board, column, row, direction, ship) == False:
+                        if orientation == "V":
+                            for i in range(row, row + ship):
+                                board[i][row] = "@"
+                        else:
+                            for i in range(column, column + ship):
+                                board[column][i] = "@"
+                            break
+            else:
+                place_ship = True
+                print("Where will you place your ship with a length of " + str(ship))
+                column, row, direction = user_input(place_ship)
+                if ship_fit(ship, column, row, direction):
+                    if ship_overlap(board, column, row, direction, ship) == False:
+                        if direction == "V":
+                            for i in range(row, row + ship):
+                                board[column][i] = "@"
+                        else:
+                            for i in range(column, column + ship):
+                                board[i][row] = "@"
+                        print_board(PLAYER_BOARD)
+                        break
 
 
 def ship_fit(SHIPS, column, row, direction):
@@ -208,6 +231,6 @@ computer_hits = 0
 # welcome_message()
 # username_input()
 # place_player_ships(PLAYER_BOARD)
-# place_computer_ships()
+# place_ships(COMPUTER_BOARD)
 print_board(COMPUTER_BOARD)
-# print_board(PLAYER_GUESS_BOARD)
+print_board(PLAYER_BOARD)
