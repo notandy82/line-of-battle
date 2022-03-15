@@ -3,7 +3,7 @@
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 
 import time
-from random import randint
+import random
 
 # Player and computer boards
 PLAYER_BOARD = [["\u001b[34m~\u001b[0m"] * 9 for i in range(9)]
@@ -24,8 +24,8 @@ convert_letters = {
     "F": 5,
     "G": 6,
     "H": 7,
-    "I": 8,
-}
+    "I": 8}
+
 
 def print_board(board):
     """
@@ -98,29 +98,29 @@ def name_check(username):
         return True
 
 
-def place_computer_ships(board):
+def place_computer_ships():
     """
     Random placement for the computer's ships
     """
     for ship in range(5):
-        ship_column, ship_row = randint(0,9), randint(0,9)
-        while COMPUTER_BOARD[ship_column][ship_row] == "@":
-            ship_column, ship_row = randint(0,9), randint(0,9)
-        board[ship_column][ship_row] = "@"
+        ship_column, ship_row = randint(0, 9), randint(0, 9)
+        while COMPUTER_BOARD[ship_column][ship_row] == "X":
+            ship_column, ship_row = randint(0, 9), randint(0, 9)
+        board[ship_column][ship_row] = "X"
 
 
-def place_player_ships(PLAYER_BOARD):
+def place_player_ships():
     """
     Function for player to place ships
     """
-    column = input("Choose a column A - I to place your ship")
+    column = input("Choose a column A - I to place your ship: ")
     while column not in "ABCDEFGHI":
         print("Please enter a valid column")
-        column = input("Choose a column A - I to place your ship")
-    row = input("Choose a row 1 - 9 to place your ship")
+        column = input("Choose a column A - I to place your ship: ")
+    row = input("Choose a row 1 - 9 to place your ship: ")
     while row not in "123456789":
         print("Please enter a valid row")
-        row = input("Choose a row 1 - 9 to place your ship")
+        row = input("Choose a row 1 - 9 to place your ship: ")
 
 
 def fire():
@@ -136,7 +136,6 @@ def fire():
         print("Please enter a valid row")
         row = input("Enter the row 1 - 9 you wish to fire at: ")
     return convert_letters[column], int(row) - 1
-        
 
 
 def player_turn():
@@ -146,7 +145,7 @@ def player_turn():
     if PLAYER_GUESS_BOARD[column][row] == "O" or "\u001b[31mX\u001b[0m":
         print("You've already fired there, choose somewhere else!")
         fire()
-    elif COMPUTER_BOARD[column][row] == "@":
+    elif COMPUTER_BOARD[column][row] == "X":
         print("By golly you've hit 'em!")
         PLAYER_GUESS_BOARD[column][row] = "\u001b[31mX\u001b[0m"
         player_hits += 1
@@ -163,10 +162,14 @@ def computer_shot():
     row = randint(0 - 8)
     check_computer_shot()
 
-def check_computer_shot()
+
+def check_computer_shot():
+    """
+    Determines if computer shot is a hit or miss, or a repeat shot
+    """
     if COMPUTER_GUESS_BOARD[column][row] == "O" or "\u001b[31mX\u001b[0m":
         computer_shot()
-    elif PLAYER_BOARD[column][row] == "@":
+    elif PLAYER_BOARD[column][row] == "X":
         print("Admiral, we've been hit!")
         computer_hits += 1
     else:
@@ -179,7 +182,7 @@ computer_hits = 0
 
 # welcome_message()
 # username_input()
-# place_player_ships()
-place_computer_ships(COMPUTER_BOARD)
+# place_player_ships(PLAYER_BOARD)
+# place_computer_ships()
 print_board(COMPUTER_BOARD)
-print_board(PLAYER_BOARD)
+# print_board(PLAYER_GUESS_BOARD)
