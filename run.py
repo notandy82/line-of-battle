@@ -106,7 +106,8 @@ def place_ships(board):
     for ship_length in SHIP_LENGTHS:
         while True:
             if board == COMPUTER_BOARD:
-                direction, column, row = random.choice(["H", "V"]), random.randint(0, 8), random.randint(0, 8)
+                direction, column, row = random.choice(["H", "V"]), \
+                random.randint(0, 8), random.randint(0, 8)
                 if ship_fit(ship_length, column, row, direction):
                     if ship_overlap(board, column, row, direction, ship_length) == False:
                         if direction == "V":
@@ -223,6 +224,8 @@ computer_hits = 0
 # welcome_message()
 # username_input()
 
-place_ships(COMPUTER_BOARD)
-print_board(COMPUTER_BOARD)
-# print_board(PLAYER_BOARD)
+# place_ships(COMPUTER_BOARD)
+# print_board(COMPUTER_BOARD)
+print_board(PLAYER_BOARD)
+# place_ships(PLAYER_BOARD)
+
