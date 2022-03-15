@@ -117,7 +117,21 @@ def place_ships(board):
         while True:
             if board == COMPUTER_BOARD:
                 direction, column, row = random.choice(["H", "V"]), random.randint(0, 8), random.randint(0, 8)
-                
+
+
+def ship_fit(SHIPS, column, row, direction):
+    """
+    Determines if ship fits on board
+    """
+    pass
+
+
+def ship_overlap(board, column, row, direction, ship):
+    """
+    Determines if ship is placed where another ship already is
+    """
+    pass
+
 
 
 def place_player_ships():
