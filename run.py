@@ -109,30 +109,30 @@ def place_ship(board):
                 direction, column, row = random.choice(["H", "V"]), \
                     random.randint(0, 8), random.randint(0, 8)
                 if ship_fit(ship_length, column, row, direction):
-                    if ship_overlap(board, column, row, direction, \
-                    ship_length) == False:
+                    if not ship_overlap(board, column, row, direction,
+                                        ship_length):
                         if direction == "H":
                             for i in range(column, column + ship_length):
                                 board[i][row] = "@"
                         else:
                             for i in range(row, row + ship_length):
                                 board[column][i] = "@"
-                        break
-            else:
-                place_ship = True
-                print("Where will you place your ship with a length of " + str(ship_length))
-                column, row, direction = player_input(place_ship)
-                if ship_fit(ship_length, column, row, direction):
-                    if ship_overlap(board, column, row, direction, ship_length):
-                        if direction == "H":
-                            for i in range(column, column + ship_length):
-                                board[i][row] = "@"
-                        else:
-                            for i in range(row, row + ship_length):
-                                board[column][i] = "@"
-                        print_board(PLAYER_BOARD)
-                        break
-                    else:
+                            break
+                else:
+                    place_ship = True
+                    print("Place ship with a length of " + str(ship_length))
+                    column, row, direction = player_input(place_ship)
+                    if ship_fit(ship_length, column, row, direction):
+                        if ship_overlap(board, column, row, direction,
+                                        ship_length):
+                            if direction == "H":
+                                for i in range(column, column + ship_length):
+                                    board[i][row] = "@"
+                            else:
+                                for i in range(row, row + ship_length):
+                                    board[column][i] = "@"
+                            print_board(PLAYER_BOARD)
+                            break
 
 
 def ship_fit(SHIP_LENGTH, column, row, direction):
@@ -157,19 +157,20 @@ def ship_overlap(board, column, row, direction, ship_length):
     """
     if direction == "H":
         for i in range(column, column + ship_length):
-            if board[column][i] == "@":
+            if board[i][row] == "@":
                 return True
     else:
         for i in range(row, row + ship_length):
-            if board[i][row] == "@":
+            if board[column][i] == "@":
                 return True
     return False
 
-# def player_input(place_ship):
+
+def player_input(place_ship):
     """
-    Input for the player to place ships and select target
+    FILL ME OUT!
     """
-    if place_ship == True:
+    if place_ship is True:
         while True:
             try:
                 direction = input("Choose a direction (H or V): ")
@@ -218,7 +219,8 @@ player_hits = 0
 computer_hits = 0
 
 # welcome_message()
-#username_input()
+# username_input()
+
 
 place_ship(COMPUTER_BOARD)
 print_board(COMPUTER_BOARD)
