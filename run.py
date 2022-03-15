@@ -167,7 +167,7 @@ def ship_overlap(board, column, row, direction, ship):
 
 
 
-def place_player_ships():
+# def place_player_ships():
     """
     Function for player to place ships
     """
@@ -181,7 +181,7 @@ def place_player_ships():
         row = input("Choose a row 1 - 9 to place your ship: ")
 
 
-def fire():
+# def fire():
     """
     Function receives player coordinate input for attack
     """
@@ -196,7 +196,7 @@ def fire():
     return convert_letters[column], int(row) - 1
 
 
-def player_turn():
+# def player_turn():
     """
     Determines if player's shot is a hit or miss
     """
@@ -212,7 +212,7 @@ def player_turn():
         PLAYER_GUESS_BOARD[column][row] = "O"
 
 
-def computer_shot():
+# def computer_shot():
     """
     Random integers selected to determine computer's target
     """
@@ -221,7 +221,7 @@ def computer_shot():
     check_computer_shot()
 
 
-def check_computer_shot():
+# def check_computer_shot():
     """
     Determines if computer shot is a hit or miss, or a repeat shot
     """
