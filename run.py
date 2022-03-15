@@ -218,9 +218,6 @@ def player_input(place_ship):
         return column, row
 
 
-player_hits = 0
-computer_hits = 0
-
 # welcome_message()
 # username_input()
 
