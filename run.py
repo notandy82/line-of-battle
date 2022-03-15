@@ -12,7 +12,7 @@ COMPUTER_BOARD = [["\u001b[34m~\u001b[0m"] * 9 for i in range(9)]
 COMPUTER_GUESS_BOARD = [["\u001b[34m~\u001b[0m"] * 9 for i in range(9)]
 
 # List of ship lengths for the game
-SHIPS = [2, 3, 3, 4, 5]
+SHIP_LENGTHS = [2, 3, 3, 4, 5]
 
 # Letter to number conversion for coordinate system
 convert_letters = {
@@ -99,51 +99,40 @@ def name_check(username):
         return True
 
 
-# def place_computer_ships():
-    """
-    Random placement for the computer's ships
-    """
-    for ship in range(5):
-        ship_column, ship_row = randint(0, 9), randint(0, 9)
-        while COMPUTER_BOARD[ship_column][ship_row] == "X":
-            ship_column, ship_row = randint(0, 9), randint(0, 9)
-        board[ship_column][ship_row] = "X"
-
-
 def place_ships(board):
     """
     Combines functions to place player ships and computer ships
     """
-    for ship in SHIPS:
+    for ship_length in SHIP_LENGTHS:
         while True:
             if board == COMPUTER_BOARD:
                 direction, column, row = random.choice(["H", "V"]), random.randint(0, 8), random.randint(0, 8)
-                if ship_fit(SHIPS, column, row, direction):
-                    if ship_overlap(board, column, row, direction, ship) == False:
-                        if orientation == "V":
-                            for i in range(row, row + ship):
+                if ship_fit(ship_length, column, row, direction):
+                    if ship_overlap(board, column, row, direction, ship_length) == False:
+                        if direction == "V":
+                            for i in range(row, row + ship_length):
                                 board[i][row] = "@"
                         else:
-                            for i in range(column, column + ship):
+                            for i in range(column, column + ship_length):
                                 board[column][i] = "@"
                             break
             else:
                 place_ship = True
-                print("Where will you place your ship with a length of " + str(ship))
+                print("Where will you place your ship with a length of " + str(ship_length))
                 column, row, direction = user_input(place_ship)
-                if ship_fit(ship, column, row, direction):
-                    if ship_overlap(board, column, row, direction, ship) == False:
+                if ship_fit(ship_length, column, row, direction):
+                    if ship_overlap(board, column, row, direction, ship_length) == False:
                         if direction == "V":
-                            for i in range(row, row + ship):
+                            for i in range(row, row + ship_length):
                                 board[column][i] = "@"
                         else:
-                            for i in range(column, column + ship):
+                            for i in range(column, column + ship_length):
                                 board[i][row] = "@"
                         print_board(PLAYER_BOARD)
                         break
 
 
-def ship_fit(SHIPS, column, row, direction):
+def ship_fit(ship, column, row, direction):
     """
     Determines if ship fits on board
     """
@@ -159,26 +148,19 @@ def ship_fit(SHIPS, column, row, direction):
             return True
 
 
-def ship_overlap(board, column, row, direction, ship):
+def ship_overlap(board, column, row, direction, ship_length):
     """
     Determines if ship is placed where another ship already is
     """
-    pass
-
-
-
-# def place_player_ships():
-    """
-    Function for player to place ships
-    """
-    column = input("Choose a column A - I to place your ship: ")
-    while column not in "ABCDEFGHI":
-        print("Please enter a valid column")
-        column = input("Choose a column A - I to place your ship: ")
-    row = input("Choose a row 1 - 9 to place your ship: ")
-    while row not in "123456789":
-        print("Please enter a valid row")
-        row = input("Choose a row 1 - 9 to place your ship: ")
+    if direction == "V":
+        for i in range(row, row + ship_length):
+            if board[column][i] == "@":
+                return True
+    else:
+        for i in range(column, column + ship_length):
+            if board[i][row] == "@":
+                return True
+    return False
 
 
 # def fire():
@@ -240,7 +222,7 @@ computer_hits = 0
 
 # welcome_message()
 # username_input()
-# place_player_ships(PLAYER_BOARD)
-# place_ships(COMPUTER_BOARD)
+
+place_ships(COMPUTER_BOARD)
 print_board(COMPUTER_BOARD)
-print_board(PLAYER_BOARD)
+# print_board(PLAYER_BOARD)
