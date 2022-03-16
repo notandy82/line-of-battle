@@ -90,10 +90,9 @@ def place_ships(board):
     """
     for ship in range(10):               
         ship_column, ship_row = random.randint(0, 5), random.randint(0, 5)
-        if board[ship_column][ship_row] == "@":
+        while board[ship_column][ship_row] == "@":
             ship_column, ship_row = random.randint(0, 5), random.randint(0, 5)
-        else:
-            board[ship_column][ship_row] = "@"
+        board[ship_column][ship_row] = "@"
         
 
 def player_coordinates():
@@ -125,4 +124,6 @@ def computer_coordinates():
 
 place_ships(COMPUTER_BOARD)
 print_board(COMPUTER_BOARD)
+place_ships(PLAYER_BOARD)
+print_board(PLAYER_BOARD)
 
