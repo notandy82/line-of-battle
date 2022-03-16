@@ -117,6 +117,16 @@ def computer_coordinates():
     column, row = random.randint(0, 5), random.randint(0, 5)
     
 
+def count_hits(board):
+    """
+    Checks how many hits there have been
+    """
+    player_hits = 0
+    for column in board:
+        for row in column:
+            if row == "\u001b[31mX\u001b[0m":
+                count += 1
+    return count
 
 
 # welcome_message()
