@@ -86,7 +86,7 @@ def name_check(username):
 
 def place_ship(board):
     """
-    Combines functions to place player ships and computer ships
+    For loop to place each ship on the computer's board
     """
     for ship_length in SHIP_LENGTHS:
         while True:
@@ -121,37 +121,6 @@ def place_ship(board):
                                 board[column][i] = "@"
                         print_board(PLAYER_BOARD)
                         break
-
-
-def ship_fit(SHIP_LENGTH, column, row, direction):
-    """
-    Determines if ship fits on board
-    """
-    if direction == "H":
-        if column + SHIP_LENGTH > 9:
-            return False
-        else:
-            return True
-    else:
-        if row + SHIP_LENGTH > 9:
-            return False
-        else:
-            return True
-
-
-def ship_overlap(board, column, row, direction, ship_length):
-    """
-    Determines if ship is placed where another ship already is
-    """
-    if direction == "H":
-        for i in range(column, column + ship_length):
-            if board[i][row] == "@":
-                return True
-    else:
-        for i in range(row, row + ship_length):
-            if board[column][i] == "@":
-                return True
-    return False
 
 
 def player_input(place_ship):
