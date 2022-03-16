@@ -129,8 +129,8 @@ def count_hits(board):
     return count
 
 
-# welcome_message()
-# username_input()
+welcome_message()
+username_input()
 
 place_ships(COMPUTER_BOARD)
 print_board(COMPUTER_BOARD)
