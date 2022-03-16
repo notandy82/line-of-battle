@@ -3,8 +3,7 @@
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 
 import time
-from random import randint
-
+import random
 # Player and computer boards
 PLAYER_BOARD = [["\u001b[34m~\u001b[0m"] * 6 for i in range(6)]
 PLAYER_GUESS_BOARD = [["\u001b[34m~\u001b[0m"] * 6 for i in range(6)]
@@ -13,7 +12,7 @@ COMPUTER_GUESS_BOARD = [["\u001b[34m~\u001b[0m"] * 6 for i in range(6)]
 
 
 # Letter to number conversion for coordinate system
-convert_letters = {"A": 0, "B": 1, "C": 2, "D": 3, "E": 4,}
+convert_letters = {"A": 0, "B": 1, "C": 2, "D": 3, "E": 4, "F": 5}
 
 
 def print_board(board):
@@ -85,64 +84,21 @@ def name_check(username):
         return True
 
 
-def place_ship(board):
+def place_ships(board):
     """
     For loop to place each ship on the computer's board
     """
-    for ship_length in range(10):
-        while True:
-            if board == COMPUTER_BOARD:
-                ship_column, ship_row = randint(0, 7), randint(0, 7)
-                if board[ship_column][ship_row] == "@":
-                    ship_column, ship_row = randint(0, 7), randint(0, 7)
-                else:
-                    board[ship_column][ship_row] = "@"
-
-def player_input(place_ship):
-    """
-    FILL ME OUT!
-    """
-    if place_ship is True:
-        while True:
-            try:
-                column = input("Choose a column A - F for your ship: ")
-                if column in "ABCDEF":
-                    column = convert_letters[column]
-                    break
-            except KeyError:
-                print("Enter a letter A-F")
-        while True:
-            try:
-                row = input("Choose a row 1 - 6 for your ship: ")
-                if row in "123456789":
-                    row = int(row) - 1
-                    break
-            except ValueError:
-                print("Enter a number 1 - 6")
-        return column, row
-    else:
-        while True:
-            try:
-                column = input("Choose the column to fire at A - F: ")
-                if column in "ABCDEF":
-                    column = convert_letters[column]
-                    break
-            except KeyError:
-                print("Enter a valid letter A - F")
-        while True:
-            try:
-                row = input("Enter the row to fire at 1 - 6: ")
-                if row in "123456":
-                    row = int(row) - 1
-                    break
-            except ValueError:
-                print("Enter a valid number 1 - 6")
-        return column, row
+    for ship in range(10):
+        ship_column, ship_row = random.randint(0, 5), random.randint(0, 5)
+        if board[ship_column][ship_row] == "@":
+            ship_column, ship_row = random.randint(0, 5), random.randint(0, 5)
+        else:
+            board[ship_column][ship_row] = "@"
 
 
 # welcome_message()
 # username_input()
 
-
-place_ship(PLAYER_BOARD)
+place_ships(COMPUTER_BOARD)
+print_board(COMPUTER_BOARD)
 
