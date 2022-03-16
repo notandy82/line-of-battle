@@ -3,7 +3,7 @@
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 
 import time
-import random
+from random import randint
 
 # Player and computer boards
 PLAYER_BOARD = [["\u001b[34m~\u001b[0m"] * 6 for i in range(6)]
@@ -52,6 +52,7 @@ def welcome_message():
     print("The battle is waged on a 6 x 6 grid")
     print("Your fleet consists of 10 ships")
     print("Each ship covers 1 grid space")
+    print("Your ships are indicated by @")
     print("Alternate turns with the computer firing shots")
     print("A hit is shown with \u001b[31mX\u001b[0m")
     print("A miss is shown with O")
@@ -88,40 +89,14 @@ def place_ship(board):
     """
     For loop to place each ship on the computer's board
     """
-    for ship_length in SHIP_LENGTHS:
+    for ship_length in range(10):
         while True:
             if board == COMPUTER_BOARD:
-                direction, column, row = random.choice(["H", "V"]), \
-                    random.randint(0, 8), random.randint(0, 8)
-                if ship_fit(ship_length, column, row, direction):
-                    if not ship_overlap(board, column, row, direction,
-                                        ship_length):
-                        if direction == "H":
-                            for i in range(column, column + ship_length):
-                                board[i][row] = "@"
-                        else:
-                            for i in range(row, row + ship_length):
-                                board[column][i] = "@"
-                        break
-            else:
-                place_ship = True
-                print("Place ship with a length of " + str(ship_length))
-                column, row, direction = player_input(place_ship)
-                if ship_fit(ship_length, column, row, direction):
-                    if ship_overlap(board, column, row, direction,
-                                    ship_length):
-                        print("We can't go there, Admiral!")
-                    else:
-                        print("That'll do nicely, Admiral")
-                        if direction == "H":
-                            for i in range(column, column + ship_length):
-                                board[i][row] = "@"
-                        else:
-                            for i in range(row, row + ship_length):
-                                board[column][i] = "@"
-                        print_board(PLAYER_BOARD)
-                        break
-
+                ship_column, ship_row = randint(0, 7), randint(0, 7)
+                if board[ship_column][ship_row] == "@":
+                    ship_column, ship_row = randint(0, 7), randint(0, 7)
+                else:
+                    board[ship_column][ship_row] = "@"
 
 def player_input(place_ship):
     """
@@ -130,45 +105,38 @@ def player_input(place_ship):
     if place_ship is True:
         while True:
             try:
-                direction = input("Choose a direction (H or V): ")
-                if direction == "H" or direction == "V":
-                    break
-            except TypeError:
-                print("Enter H or V")
-        while True:
-            try:
-                column = input("Choose a column A - I for your ship: ")
-                if column in "ABCDEFGHI":
+                column = input("Choose a column A - F for your ship: ")
+                if column in "ABCDEF":
                     column = convert_letters[column]
                     break
             except KeyError:
-                print("Enter a letter A-I")
+                print("Enter a letter A-F")
         while True:
             try:
-                row = input("Choose a row 1 - 9 for your ship: ")
+                row = input("Choose a row 1 - 6 for your ship: ")
                 if row in "123456789":
                     row = int(row) - 1
                     break
             except ValueError:
-                print("Enter a number 1 - 9")
-        return column, row, direction
+                print("Enter a number 1 - 6")
+        return column, row
     else:
         while True:
             try:
-                column = input("Choose the column to fire at A - I: ")
-                if column in "ABCDEFGHI":
+                column = input("Choose the column to fire at A - F: ")
+                if column in "ABCDEF":
                     column = convert_letters[column]
                     break
             except KeyError:
-                print("Enter a valid letter A - I")
+                print("Enter a valid letter A - F")
         while True:
             try:
-                row = input("Enter the row to fire at 1 - 9: ")
-                if row in "123456789":
+                row = input("Enter the row to fire at 1 - 6: ")
+                if row in "123456":
                     row = int(row) - 1
                     break
             except ValueError:
-                print("Enter a valid number 1 - 9")
+                print("Enter a valid number 1 - 6")
         return column, row
 
 
@@ -176,5 +144,5 @@ def player_input(place_ship):
 # username_input()
 
 
-print_board(COMPUTER_BOARD)
+place_ship(PLAYER_BOARD)
 
