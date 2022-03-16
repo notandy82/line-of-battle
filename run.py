@@ -96,6 +96,54 @@ def place_ships(board):
             board[ship_column][ship_row] = "@"
 
 
+def player_coordinates(place_ship):
+    """
+    The function serves both for the player to place ships
+    and for the player to target ships
+    """
+    if place_ship == True:
+        while True:
+            try:
+                column = input("Select a column A - F to place your ship: ")
+                if column not in "ABCDEF":
+                    print("Enter a letter A - F")
+                else:
+                    column = convert_letters[column]
+                    break
+            except KeyError:
+                print("Enter a letter A - F")
+        while True:
+            try:
+                row = input("Select a row 1 - 6 to place your ship: ")
+                if row not in "123456":
+                    print("Enter a number 1 - 6")
+                else:
+                    row = int(row) - 1
+                    break
+        return column, row
+    else:
+        while True:
+            try:
+                column = input("Select a column A - F to target: ")
+                if column not in "ABCDEF":
+                    print("Enter a letter A - F")
+                else:
+                    column = convert_letters[column]
+                    break
+            except KeyError:
+                print("Enter a letter A - F")
+        while True:
+            try:
+                row = input("Select a row 1 - 6 to target: ")
+                if row not in "123456":
+                    print("Enter a number 1 - 6")
+                else:
+                    row = int(row) - 1
+                    break
+        return column, row
+
+
+
 # welcome_message()
 # username_input()
 
