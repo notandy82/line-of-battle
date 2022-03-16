@@ -6,34 +6,22 @@ import time
 import random
 
 # Player and computer boards
-PLAYER_BOARD = [["\u001b[34m~\u001b[0m"] * 9 for i in range(9)]
-PLAYER_GUESS_BOARD = [["\u001b[34m~\u001b[0m"] * 9 for i in range(9)]
-COMPUTER_BOARD = [["\u001b[34m~\u001b[0m"] * 9 for i in range(9)]
-COMPUTER_GUESS_BOARD = [["\u001b[34m~\u001b[0m"] * 9 for i in range(9)]
+PLAYER_BOARD = [["\u001b[34m~\u001b[0m"] * 6 for i in range(6)]
+PLAYER_GUESS_BOARD = [["\u001b[34m~\u001b[0m"] * 6 for i in range(6)]
+COMPUTER_BOARD = [["\u001b[34m~\u001b[0m"] * 6 for i in range(6)]
+COMPUTER_GUESS_BOARD = [["\u001b[34m~\u001b[0m"] * 6 for i in range(6)]
 
-# List of ship lengths for the game
-SHIP_LENGTHS = [2, 3, 3, 4, 5]
 
 # Letter to number conversion for coordinate system
-convert_letters = {
-    "A": 0,
-    "B": 1,
-    "C": 2,
-    "D": 3,
-    "E": 4,
-    "F": 5,
-    "G": 6,
-    "H": 7,
-    "I": 8
-}
+convert_letters = {"A": 0, "B": 1, "C": 2, "D": 3, "E": 4,}
 
 
 def print_board(board):
     """
     Creates the boards for the player and computer
     """
-    print("  A B C D E F G H I")
-    print("  _________________")
+    print("  A B C D E F")
+    print("  -----------")
     row_number = 1
     for row in board:
         print("%d|%s|" % (row_number, "|".join(row)))
@@ -219,7 +207,5 @@ def player_input(place_ship):
 # username_input()
 
 
-place_ship(COMPUTER_BOARD)
 print_board(COMPUTER_BOARD)
-print_board(PLAYER_BOARD)
-place_ship(PLAYER_BOARD)
+
