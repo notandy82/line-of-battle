@@ -88,59 +88,35 @@ def place_ships(board):
     """
     For loop to place each ship on the computer's board
     """
-    for ship in range(10):
+    for ship in range(10):               
         ship_column, ship_row = random.randint(0, 5), random.randint(0, 5)
         if board[ship_column][ship_row] == "@":
             ship_column, ship_row = random.randint(0, 5), random.randint(0, 5)
         else:
             board[ship_column][ship_row] = "@"
+        
+
+def player_coordinates():
+    """
+    Function takes player input to determine player target
+    """
+    column = input("What column (A - F) shall we fire at? ")
+    while column not in "ABCDEF":
+        print("Enter a valid column")
+        column = input("What column (A - F) shall we fire at? ")
+    row = input("What row (1 - 6) shall we fire at? ")
+    while row not in "123456":
+        print("Enter a valid row")
+        row = input("What row (1 - 6) shall we fire at? ")
+    return convert_letters[column], int(row) - 1
 
 
-def player_coordinates(place_ship):
+def computer_coordinates():
     """
-    The function serves both for the player to place ships
-    and for the player to target ships
+    function uses random numbers to determine the computer target
     """
-    if place_ship == True:
-        while True:
-            try:
-                column = input("Select a column A - F to place your ship: ")
-                if column not in "ABCDEF":
-                    print("Enter a letter A - F")
-                else:
-                    column = convert_letters[column]
-                    break
-            except KeyError:
-                print("Enter a letter A - F")
-        while True:
-            try:
-                row = input("Select a row 1 - 6 to place your ship: ")
-                if row not in "123456":
-                    print("Enter a number 1 - 6")
-                else:
-                    row = int(row) - 1
-                    break
-        return column, row
-    else:
-        while True:
-            try:
-                column = input("Select a column A - F to target: ")
-                if column not in "ABCDEF":
-                    print("Enter a letter A - F")
-                else:
-                    column = convert_letters[column]
-                    break
-            except KeyError:
-                print("Enter a letter A - F")
-        while True:
-            try:
-                row = input("Select a row 1 - 6 to target: ")
-                if row not in "123456":
-                    print("Enter a number 1 - 6")
-                else:
-                    row = int(row) - 1
-                    break
-        return column, row
+    column, row = random.randint(0, 5), random.randint(0, 5)
+    
 
 
 
