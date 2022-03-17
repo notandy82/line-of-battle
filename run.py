@@ -149,6 +149,7 @@ def turn(board):
             print("It's a hit, Admiral " + USERNAME + "!")
         else:
             board[column][row] = "O"
+            print("It's a miss, Admiral " + USERNAME)
     else:
         column, row = computer_coordinates()
         if board[column][row] == "O":
@@ -174,9 +175,12 @@ def start_game():
     username_input()
     place_ships(COMPUTER_BOARD)
     place_ships(PLAYER_BOARD)
-    print_board(PLAYER_BOARD)
-    turn(PLAYER_TARGET_BOARD)
-    count_hits(PLAYER_TARGET_BOARD)
+    while True:
+        print_board(PLAYER_TARGET_BOARD)
+        turn(PLAYER_TARGET_BOARD)
+        break
+    if count_hits(PLAYER_TARGET_BOARD) == 10
+        
 
 
 start_game()
