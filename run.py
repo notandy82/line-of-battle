@@ -4,13 +4,12 @@
 
 import time
 import random
+
 # Player and computer boards
 PLAYER_BOARD = [["\u001b[34m~\u001b[0m"] * 6 for i in range(6)]
 PLAYER_TARGET_BOARD = [["\u001b[34m~\u001b[0m"] * 6 for i in range(6)]
 COMPUTER_BOARD = [["\u001b[34m~\u001b[0m"] * 6 for i in range(6)]
 COMPUTER_TARGET_BOARD = [["\u001b[34m~\u001b[0m"] * 6 for i in range(6)]
-
-USERNAME = None
 
 
 # Letter to number conversion for coordinate system
@@ -67,19 +66,19 @@ def username_input():
     """
     print("What is your name Admiral? ")
     while True:
-        USERNAME = input("Enter the name you wish to go by: ")
-        if name_check(USERNAME):
+        username = input("Enter the name you wish to go by: ")
+        if name_check(username):
             break
-    print("Prepare for battle, Admiral " + USERNAME + "!")
-    return USERNAME
+    print("Prepare for battle, Admiral " + username + "!")
+    return username
 
 
-def name_check(USERNAME):
+def name_check(username):
     """
     This ensures the player has entered at least one character for
     a name and tells the player to enter a name.
     """
-    if len(USERNAME) == 0:
+    if len(username) == 0:
         print("Please enter at least 1 character")
         return False
     else:
@@ -90,7 +89,7 @@ def place_ships(board):
     """
     For loop to place each ship on the computer's board
     """
-    for ship in range(10):               
+    for ship in range(10):
         ship_column, ship_row = random.randint(0, 5), random.randint(0, 5)
         while board[ship_column][ship_row] == "@":
             ship_column, ship_row = random.randint(0, 5), random.randint(0, 5)
@@ -118,7 +117,7 @@ def computer_coordinates():
     """
     column, row = random.randint(0, 5), random.randint(0, 5)
     return column, row
-    
+
 
 def count_hits(board):
     """
@@ -177,18 +176,20 @@ def start_game():
     place_ships(COMPUTER_BOARD)
     place_ships(PLAYER_BOARD)
     while True:
-        print_board(PLAYER_TARGET_BOARD)
-        turn(PLAYER_TARGET_BOARD)
-        break
-    if count_hits(PLAYER_TARGET_BOARD) == 10:
-        print("I wish you joy of your victory, Admiral!")
-    while True:
-        turn(COMPUTER_TARGET_BOARD)
-        print_board(COMPUTER_TARGET_BOARD)
-        break
-    if count_hits(COMPUTER_TARGET_BOARD) == 10:
-        print("Oh dear, this isn't good Admiral")
-        
+        while True:
+            print_board(PLAYER_TARGET_BOARD)
+            turn(PLAYER_TARGET_BOARD)
+            break
+        if count_hits(PLAYER_TARGET_BOARD) == 10:
+            print("I wish you joy of your victory, Admiral!")
+            break
+        while True:
+            turn(COMPUTER_TARGET_BOARD)
+            print_board(COMPUTER_TARGET_BOARD)
+            break
+        if count_hits(COMPUTER_TARGET_BOARD) == 10:
+            print("Oh dear, this isn't good Admiral")
+            break
 
 
 start_game()
