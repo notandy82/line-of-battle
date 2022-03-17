@@ -179,8 +179,15 @@ def start_game():
         print_board(PLAYER_TARGET_BOARD)
         turn(PLAYER_TARGET_BOARD)
         break
-    if count_hits(PLAYER_TARGET_BOARD) == 10
-        
+    if count_hits(PLAYER_TARGET_BOARD) == 10:
+        print("I wish you joy of your victory, Admiral " + USERNAME +"!")
+        break
+    while True:
+        turn(COMPUTER_TARGET_BOARD)
+        print_board(COMPUTER_TARGET_BOARD)
+    if count_hits(COMPUTER_TARGET_BOARD) == 10:
+        print("Oh dear, this isn't good Admiral " + USERNAME)
+        break
 
 
 start_game()
