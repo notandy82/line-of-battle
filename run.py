@@ -10,6 +10,8 @@ PLAYER_TARGET_BOARD = [["\u001b[34m~\u001b[0m"] * 6 for i in range(6)]
 COMPUTER_BOARD = [["\u001b[34m~\u001b[0m"] * 6 for i in range(6)]
 COMPUTER_TARGET_BOARD = [["\u001b[34m~\u001b[0m"] * 6 for i in range(6)]
 
+USERNAME = None
+
 
 # Letter to number conversion for coordinate system
 convert_letters = {"A": 0, "B": 1, "C": 2, "D": 3, "E": 4, "F": 5}
@@ -65,19 +67,19 @@ def username_input():
     """
     print("What is your name Admiral?")
     while True:
-        username = input("Enter the name you wish to go by: ")
-        if name_check(username):
+        USERNAME = input("Enter the name you wish to go by: ")
+        if name_check(USERNAME):
             break
-    print("Prepare for battle, Admiral " + username + "!")
-    return username
+    print("Prepare for battle, Admiral " + USERNAME + "!")
+    return USERNAME
 
 
-def name_check(username):
+def name_check(USERNAME):
     """
     This ensures the player has entered at least one character for
     a name and tells the player to enter a name.
     """
-    if len(username) == 0:
+    if len(USERNAME) == 0:
         print("Please enter at least 1 character")
         return False
     else:
@@ -137,12 +139,12 @@ def turn(board):
         column, row = player_coordinates()
         if COMPUTER_BOARD[column][row] is "@":
             board[column][row] = "\u001b[31mX\u001b[0m"
-            print("It's a hit, Admiral " + username + "!")
+            print("It's a hit, Admiral " + USERNAME + "!")
         elif board[column][row] is "O":
-            print("We already fired there, Admiral " + username)
+            print("We already fired there, Admiral " + USERNAME)
             turn(board)
         elif board[column][row] is "\u001b[31mX\u001b[0m":
-            print("We already fired there, Admiral " + username)
+            print("We already fired there, Admiral " + USERNAME)
             turn(board)
         else:
             board[column][row] = "O"
@@ -150,21 +152,21 @@ def turn(board):
         column, row = computer_coordinates()
         if PLAYER_BOARD[column][row] is "@":
             board[column][row] = "\u001b[31mX\u001b[0m"
-            print("We're hit, Admiral " + username + "!")
+            print("We're hit, Admiral " + USERNAME + "!")
         elif board[column][row] is "O":
             turn(board)
         elif board[column][row] is "\u001b[31mX\u001b[0m":
             turn(board)
         else:
             board[column][row] = "O"
+            print("They missed us, Admiral " + USERNAME)
 
 
 
 welcome_message()
 username_input()
 
-place_ships(COMPUTER_BOARD)
-print_board(COMPUTER_BOARD)
-place_ships(PLAYER_BOARD)
-print_board(PLAYER_BOARD)
-
+# place_ships(COMPUTER_BOARD)
+# print_board(COMPUTER_BOARD)
+# place_ships(PLAYER_BOARD)
+# print_board(PLAYER_BOARD)
