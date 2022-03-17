@@ -137,26 +137,26 @@ def turn(board):
     """
     if board == PLAYER_TARGET_BOARD:
         column, row = player_coordinates()
-        if COMPUTER_BOARD[column][row] is "@":
-            board[column][row] = "\u001b[31mX\u001b[0m"
-            print("It's a hit, Admiral " + USERNAME + "!")
-        elif board[column][row] is "O":
+        if board[column][row] is "O":
             print("We already fired there, Admiral " + USERNAME)
             turn(board)
         elif board[column][row] is "\u001b[31mX\u001b[0m":
             print("We already fired there, Admiral " + USERNAME)
             turn(board)
+        elif COMPUTER_BOARD[column][row] is "@":
+            board[column][row] = "\u001b[31mX\u001b[0m"
+            print("It's a hit, Admiral " + USERNAME + "!")
         else:
             board[column][row] = "O"
     else:
         column, row = computer_coordinates()
-        if PLAYER_BOARD[column][row] is "@":
-            board[column][row] = "\u001b[31mX\u001b[0m"
-            print("We're hit, Admiral " + USERNAME + "!")
-        elif board[column][row] is "O":
+        if board[column][row] is "O":
             turn(board)
         elif board[column][row] is "\u001b[31mX\u001b[0m":
             turn(board)
+        elif PLAYER_BOARD[column][row] is "@":
+            board[column][row] = "\u001b[31mX\u001b[0m"
+            print("We're hit, Admiral " + USERNAME + "!")
         else:
             board[column][row] = "O"
             print("They missed us, Admiral " + USERNAME)
