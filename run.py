@@ -6,9 +6,9 @@ import time
 import random
 # Player and computer boards
 PLAYER_BOARD = [["\u001b[34m~\u001b[0m"] * 6 for i in range(6)]
-PLAYER_GUESS_BOARD = [["\u001b[34m~\u001b[0m"] * 6 for i in range(6)]
+PLAYER_TARGET_BOARD = [["\u001b[34m~\u001b[0m"] * 6 for i in range(6)]
 COMPUTER_BOARD = [["\u001b[34m~\u001b[0m"] * 6 for i in range(6)]
-COMPUTER_GUESS_BOARD = [["\u001b[34m~\u001b[0m"] * 6 for i in range(6)]
+COMPUTER_TARGET_BOARD = [["\u001b[34m~\u001b[0m"] * 6 for i in range(6)]
 
 
 # Letter to number conversion for coordinate system
@@ -115,18 +115,49 @@ def computer_coordinates():
     function uses random numbers to determine the computer target
     """
     column, row = random.randint(0, 5), random.randint(0, 5)
+    return column, row
     
 
 def count_hits(board):
     """
     Checks how many hits there have been
     """
-    player_hits = 0
     for column in board:
         for row in column:
-            if row == "\u001b[31mX\u001b[0m":
-                count += 1
-    return count
+            if row is "\u001b[31mX\u001b[0m":
+                player_hits += 1
+    return player_hits
+
+
+def turn(board):
+    """
+    Function runs the player's and the computer's turn
+    """
+    if board == PLAYER_TARGET_BOARD:
+        column, row = player_coordinates()
+        if COMPUTER_BOARD[column][row] is "@":
+            board[column][row] = "\u001b[31mX\u001b[0m"
+            print("It's a hit, Admiral " + username + "!")
+        elif board[column][row] is "O":
+            print("We already fired there, Admiral " + username)
+            turn(board)
+        elif board[column][row] is "\u001b[31mX\u001b[0m":
+            print("We already fired there, Admiral " + username)
+            turn(board)
+        else:
+            board[column][row] = "O"
+    else:
+        column, row = computer_coordinates()
+        if PLAYER_BOARD[column][row] is "@":
+            board[column][row] = "\u001b[31mX\u001b[0m"
+            print("We're hit, Admiral " + username + "!")
+        elif board[column][row] is "O":
+            turn(board)
+        elif board[column][row] is "\u001b[31mX\u001b[0m":
+            turn(board)
+        else:
+            board[column][row] = "O"
+
 
 
 welcome_message()
