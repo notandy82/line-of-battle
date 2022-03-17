@@ -95,7 +95,7 @@ def place_ships(board):
         while board[ship_column][ship_row] == "@":
             ship_column, ship_row = random.randint(0, 5), random.randint(0, 5)
         board[ship_column][ship_row] = "@"
-        
+
 
 def player_coordinates():
     """
@@ -124,11 +124,12 @@ def count_hits(board):
     """
     Checks how many hits there have been
     """
+    hits = 0
     for column in board:
         for row in column:
             if row == "\u001b[31mX\u001b[0m":
-                player_hits += 1
-    return player_hits
+                hits += 1
+    return hits
 
 
 def turn(board):
@@ -174,6 +175,8 @@ def start_game():
     place_ships(COMPUTER_BOARD)
     place_ships(PLAYER_BOARD)
     print_board(PLAYER_BOARD)
+    turn(PLAYER_TARGET_BOARD)
+    count_hits(PLAYER_TARGET_BOARD)
 
 
 start_game()
