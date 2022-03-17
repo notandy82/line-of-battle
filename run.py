@@ -162,11 +162,18 @@ def turn(board):
             print("They missed us, Admiral " + USERNAME)
 
 
+def start_game():
+    """
+    Starts the game, contains all game functions
+    """
+    start = input("Press S to start the game")
+    while start != "S":
+        start = input("Press S to start the game")
+    welcome_message()
+    username_input()
+    place_ships(COMPUTER_BOARD)
+    place_ships(PLAYER_BOARD)
+    print_board(PLAYER_BOARD)
 
-welcome_message()
-username_input()
 
-# place_ships(COMPUTER_BOARD)
-# print_board(COMPUTER_BOARD)
-# place_ships(PLAYER_BOARD)
-# print_board(PLAYER_BOARD)
+start_game()
