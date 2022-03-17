@@ -126,7 +126,7 @@ def count_hits(board):
     """
     for column in board:
         for row in column:
-            if row is "\u001b[31mX\u001b[0m":
+            if row == "\u001b[31mX\u001b[0m":
                 player_hits += 1
     return player_hits
 
@@ -137,24 +137,24 @@ def turn(board):
     """
     if board == PLAYER_TARGET_BOARD:
         column, row = player_coordinates()
-        if board[column][row] is "O":
+        if board[column][row] == "O":
             print("We already fired there, Admiral " + USERNAME)
             turn(board)
-        elif board[column][row] is "\u001b[31mX\u001b[0m":
+        elif board[column][row] == "\u001b[31mX\u001b[0m":
             print("We already fired there, Admiral " + USERNAME)
             turn(board)
-        elif COMPUTER_BOARD[column][row] is "@":
+        elif COMPUTER_BOARD[column][row] == "@":
             board[column][row] = "\u001b[31mX\u001b[0m"
             print("It's a hit, Admiral " + USERNAME + "!")
         else:
             board[column][row] = "O"
     else:
         column, row = computer_coordinates()
-        if board[column][row] is "O":
+        if board[column][row] == "O":
             turn(board)
-        elif board[column][row] is "\u001b[31mX\u001b[0m":
+        elif board[column][row] == "\u001b[31mX\u001b[0m":
             turn(board)
-        elif PLAYER_BOARD[column][row] is "@":
+        elif PLAYER_BOARD[column][row] == "@":
             board[column][row] = "\u001b[31mX\u001b[0m"
             print("We're hit, Admiral " + USERNAME + "!")
         else:
