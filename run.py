@@ -185,6 +185,7 @@ def start_game():
     while True:
         turn(COMPUTER_TARGET_BOARD)
         print_board(COMPUTER_TARGET_BOARD)
+        break
     if count_hits(COMPUTER_TARGET_BOARD) == 10:
         print("Oh dear, this isn't good Admiral " + USERNAME)
         break
