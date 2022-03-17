@@ -34,7 +34,7 @@ def welcome_message():
     Introduction screen
     """
     print("""
-            ____|____ ___|__
+            ____|___ ___|__
            |       | |     |
     _      |       | |     |\\
    / |     |       | |     | \\ 

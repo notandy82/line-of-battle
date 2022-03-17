@@ -1,4 +1,4 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+Live demo[_here_](https://the-line-of-battle.herokuapp.com/)
 
 Welcome notandy82,
 
