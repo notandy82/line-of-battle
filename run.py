@@ -139,17 +139,18 @@ def turn(board):
     if board == PLAYER_TARGET_BOARD:
         column, row = player_coordinates()
         if board[column][row] == "O":
-            print("We already fired there, Admiral " + USERNAME)
+            print("We already fired there, Admiral")
             turn(board)
         elif board[column][row] == "\u001b[31mX\u001b[0m":
-            print("We already fired there, Admiral " + USERNAME)
+            print("We already fired there, Admiral")
             turn(board)
         elif COMPUTER_BOARD[column][row] == "@":
             board[column][row] = "\u001b[31mX\u001b[0m"
-            print("It's a hit, Admiral " + USERNAME + "!")
+            print("It's a hit, Admiral!")
         else:
             board[column][row] = "O"
-            print("It's a miss, Admiral " + USERNAME)
+            print("It's a miss, Admiral")
+        print_board(PLAYER_TARGET_BOARD)
     else:
         column, row = computer_coordinates()
         if board[column][row] == "O":
@@ -158,10 +159,10 @@ def turn(board):
             turn(board)
         elif PLAYER_BOARD[column][row] == "@":
             board[column][row] = "\u001b[31mX\u001b[0m"
-            print("We're hit, Admiral " + USERNAME + "!")
+            print("We're hit, Admiral!")
         else:
             board[column][row] = "O"
-            print("They missed us, Admiral " + USERNAME)
+            print("They missed us, Admiral")
 
 
 def start_game():
@@ -180,13 +181,13 @@ def start_game():
         turn(PLAYER_TARGET_BOARD)
         break
     if count_hits(PLAYER_TARGET_BOARD) == 10:
-        print("I wish you joy of your victory, Admiral " + USERNAME + "!")
+        print("I wish you joy of your victory, Admiral!")
     while True:
         turn(COMPUTER_TARGET_BOARD)
         print_board(COMPUTER_TARGET_BOARD)
         break
     if count_hits(COMPUTER_TARGET_BOARD) == 10:
-        print("Oh dear, this isn't good Admiral " + USERNAME)
+        print("Oh dear, this isn't good Admiral")
         
 
 
