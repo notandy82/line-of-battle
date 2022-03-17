@@ -65,7 +65,7 @@ def username_input():
     """
     Input takes the name of the user for game personalisation
     """
-    print("What is your name Admiral?")
+    print("What is your name Admiral? ")
     while True:
         USERNAME = input("Enter the name you wish to go by: ")
         if name_check(USERNAME):
@@ -101,10 +101,10 @@ def player_coordinates():
     """
     Function takes player input to determine player target
     """
-    column = input("What column (A - F) shall we fire at? ")
+    column = input("What column (A - F) shall we fire at? ").upper()
     while column not in "ABCDEF":
         print("Enter a valid column")
-        column = input("What column (A - F) shall we fire at? ")
+        column = input("What column (A - F) shall we fire at? ").upper()
     row = input("What row (1 - 6) shall we fire at? ")
     while row not in "123456":
         print("Enter a valid row")
@@ -169,9 +169,9 @@ def start_game():
     """
     Starts the game, contains all game functions
     """
-    start = input("Press S to start the game")
+    start = input("Press S to start the game ").upper()
     while start != "S":
-        start = input("Press S to start the game")
+        start = input("Press S to start the game ").upper()
     welcome_message()
     username_input()
     place_ships(COMPUTER_BOARD)
