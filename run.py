@@ -90,10 +90,10 @@ def place_ships(board):
     For loop to place each ship on the computer's board
     """
     for ship in range(10):
-        ship_column, ship_row = random.randint(0, 5), random.randint(0, 5)
-        while board[ship_column][ship_row] == "@":
-            ship_column, ship_row = random.randint(0, 5), random.randint(0, 5)
-        board[ship_column][ship_row] = "@"
+        column, row = random.randint(0, 5), random.randint(0, 5)
+        while board[column][row] == "@":
+            column, row = random.randint(0, 5), random.randint(0, 5)
+        board[column][row] = "@"
 
 
 def player_coordinates():
