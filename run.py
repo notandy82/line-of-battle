@@ -192,4 +192,12 @@ def start_game():
             break
 
 
+def end_game():
+    """
+    Adds a message indicating how to play again
+    """
+    print("If you'd like to play again, please refresh your browser")
+    print("See you soon!")
+
 start_game()
+end_game()
