@@ -54,6 +54,8 @@ def welcome_message():
     print("Each ship covers 1 grid space")
     print("Your ships are indicated by @")
     print("Alternate turns with the computer firing shots")
+    print("Select a target by first choosing the row number,\
+         then the column letter")
     print("A hit is shown with \u001b[31mX\u001b[0m")
     print("A miss is shown with O")
     print("You must sink 5 of the computer's vessels before yours are sunk")
@@ -180,9 +182,9 @@ def start_game():
     """
     Starts the game, contains all game functions
     """
-    start = input("Press S to start the game ").upper()
+    start = input("Press S and hit enter to start the game ").upper()
     while start != "S":
-        start = input("Press S to start the game ").upper()
+        start = input("Press S and hit enter to start the game ").upper()
     welcome_message()
     username_input()
     place_ships(COMPUTER_BOARD)
