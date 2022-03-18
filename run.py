@@ -101,11 +101,11 @@ def player_coordinates():
     Function takes player input to determine player target
     """
     row = input("What row (1 - 6) shall we fire at? ")
-    while row not in "123456":
+    while row not in ["1", "2", "3", "4", "5", "6"]:
         print("Enter a valid row")
         row = input("What row (1 - 6) shall we fire at? ")
     column = input("What column (A - F) shall we fire at? ").upper()
-    while column not in "ABCDEF":
+    while column not in ["A", "B", "C", "D", "E", "F"]:
         print("Enter a valid column")
         column = input("What column (A - F) shall we fire at? ").upper()
     return int(row) - 1, convert_letters[column]
