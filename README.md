@@ -3,10 +3,7 @@ The Line of Battle is a game based on the game Battleship by Hasbro.  In this ve
 Live demo[_here_](https://the-line-of-battle.herokuapp.com/)
 
 ## Table of Contents
-* [UX](#ux)
-  * [Site Owner Goals](#site-owner-goals)      
-  * [Structure](#structure)
-  * [Wireframes](#wireframes)
+* [Site Owner Goals](#site-owner-goals)      
 * [Features](#features)
 * [Technologies Used](#technologies-used)
 * [Testing](#testing)
@@ -16,22 +13,20 @@ Live demo[_here_](https://the-line-of-battle.herokuapp.com/)
 * [Contact](#contact)
 
 
-
-## UX
-### Site Owner Goals
-- 
-### Site User Goals
-#### First Time User
-
-### Structure
-
-
-
+## Site Owner Goals
+- The main goal was to create a game that the player can play quickly while not feeling that they are rushing through.  To do this, the board was kept small, but timing elements were introduced between turns just to add a small pause in the game.
 ## Features
 ### Existing Features
- - The game opens with a 
+ - The game opens with a welcome message followed by some backstory to set the scene.  
+ - The game then provides an explanation of all visuals including ships, hits, and misses
+ - There are three separate symbols that can be shown in each position.  They can be easily distinguished by both shape and colour.
+ - Next, the player is provided an input for their name.
+ - The ships for the player's board and the computer's board are both randomly generated
 
 ### Features to Implement
+ - Allow for ships of different sizes
+ - Allow the player to place their own ships
+ - A yes or no option to allow the player to play again
 
 
 
@@ -77,6 +72,8 @@ Live demo[_here_](https://the-line-of-battle.herokuapp.com/)
 - Python time module explanation was found on [_Career Karma_](https://careerkarma.com/blog/python-time/)
 - Printing in colour in terminal was found on [_stackabuse_](https://stackabuse.com/how-to-print-colored-text-in-python/)
 - Several instances of the print_board function were found, including the Youtube channel Knowledge Mavens and Github user Faris-07
+- Thanks to my mentor Adegbenga Adeye for his help and guidance
+- Thanks to my wife for her support and also for buying a physical Battleship game to stare at for inspiration
 
 
 
