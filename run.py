@@ -146,9 +146,11 @@ def turn(board):
         elif COMPUTER_BOARD[row][column] == "@":
             board[row][column] = "\u001b[31mX\u001b[0m"
             print("It's a hit, Admiral!")
+            time.sleep(2)
         else:
             board[row][column] = "O"
             print("It's a miss, Admiral")
+            time.sleep(2)
         print_board(PLAYER_TARGET_BOARD)
     else:
         row, column = computer_coordinates()
@@ -159,9 +161,11 @@ def turn(board):
         elif PLAYER_BOARD[row][column] == "@":
             board[row][column] = "\u001b[31mX\u001b[0m"
             print("We're hit, Admiral!")
+            time.sleep(2)
         else:
             board[row][column] = "O"
             print("They missed us, Admiral")
+            time.sleep(2)
 
 
 def start_game():
