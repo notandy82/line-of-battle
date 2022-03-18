@@ -56,7 +56,7 @@ def welcome_message():
     print("Alternate turns with the computer firing shots")
     print("A hit is shown with \u001b[31mX\u001b[0m")
     print("A miss is shown with O")
-    print("You must sink the computer's vessels before yours are sunk")
+    print("You must sink 5 of the computer's vessels before yours are sunk")
     time.sleep(5)
 
 
@@ -70,6 +70,7 @@ def username_input():
         if name_check(username):
             break
     print("Prepare for battle, Admiral " + username + "!")
+    print("")
     return username
 
 
@@ -145,13 +146,16 @@ def turn(board):
             turn(board)
         elif COMPUTER_BOARD[row][column] == "@":
             board[row][column] = "\u001b[31mX\u001b[0m"
+            print("")
             print("It's a hit, Admiral!")
-            time.sleep(2)
+            print("")
         else:
             board[row][column] = "O"
+            print("")
             print("It's a miss, Admiral")
-            time.sleep(2)
+            print("")
         print_board(PLAYER_TARGET_BOARD)
+        time.sleep(4)
     else:
         row, column = computer_coordinates()
         if board[row][column] == "O":
@@ -160,12 +164,16 @@ def turn(board):
             turn(board)
         elif PLAYER_BOARD[row][column] == "@":
             board[row][column] = "\u001b[31mX\u001b[0m"
+            print("")
             print("We're hit, Admiral!")
-            time.sleep(2)
+            print("")
+            time.sleep(4)
         else:
             board[row][column] = "O"
+            print("")
             print("They missed us, Admiral")
-            time.sleep(2)
+            print("")
+            time.sleep(4)
 
 
 def start_game():
@@ -181,18 +189,25 @@ def start_game():
     place_ships(PLAYER_BOARD)
     while True:
         while True:
+            print("")
+            print("Your board")
             print_board(PLAYER_TARGET_BOARD)
             turn(PLAYER_TARGET_BOARD)
             break
-        if count_hits(PLAYER_TARGET_BOARD) == 10:
+        if count_hits(PLAYER_TARGET_BOARD) == 5:
             print("I wish you joy of your victory, Admiral!")
             break
         while True:
             turn(COMPUTER_TARGET_BOARD)
+            print("Computer board")
+            print("")
             print_board(COMPUTER_TARGET_BOARD)
+            print("")
             break
-        if count_hits(COMPUTER_TARGET_BOARD) == 10:
+        if count_hits(COMPUTER_TARGET_BOARD) == 5:
             print("Oh dear, this isn't good Admiral")
+            print("Perhaps it's time to retreat")
+            print("")
             break
 
 
