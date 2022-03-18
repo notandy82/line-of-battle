@@ -90,33 +90,33 @@ def place_ships(board):
     For loop to place each ship on the computer's board
     """
     for ship in range(10):
-        column, row = random.randint(0, 5), random.randint(0, 5)
-        while board[column][row] == "@":
-            column, row = random.randint(0, 5), random.randint(0, 5)
-        board[column][row] = "@"
+        row, column = random.randint(0, 5), random.randint(0, 5)
+        while board[row][column] == "@":
+            row, column = random.randint(0, 5), random.randint(0, 5)
+        board[row][column] = "@"
 
 
 def player_coordinates():
     """
     Function takes player input to determine player target
     """
-    column = input("What column (A - F) shall we fire at? ").upper()
-    while column not in "ABCDEF":
-        print("Enter a valid column")
-        column = input("What column (A - F) shall we fire at? ").upper()
     row = input("What row (1 - 6) shall we fire at? ")
     while row not in "123456":
         print("Enter a valid row")
         row = input("What row (1 - 6) shall we fire at? ")
-    return convert_letters[column], int(row) - 1
+    column = input("What column (A - F) shall we fire at? ").upper()
+    while column not in "ABCDEF":
+        print("Enter a valid column")
+        column = input("What column (A - F) shall we fire at? ").upper()
+    return int(row) - 1, convert_letters[column]
 
 
 def computer_coordinates():
     """
     function uses random numbers to determine the computer target
     """
-    column, row = random.randint(0, 5), random.randint(0, 5)
-    return column, row
+    row, column = random.randint(0, 5), random.randint(0, 5)
+    return row, column
 
 
 def count_hits(board):
@@ -136,31 +136,31 @@ def turn(board):
     Function runs the player's and the computer's turn
     """
     if board == PLAYER_TARGET_BOARD:
-        column, row = player_coordinates()
-        if board[column][row] == "O":
+        row, column = player_coordinates()
+        if board[row][column] == "O":
             print("We already fired there, Admiral")
             turn(board)
-        elif board[column][row] == "\u001b[31mX\u001b[0m":
+        elif board[row][column] == "\u001b[31mX\u001b[0m":
             print("We already fired there, Admiral")
             turn(board)
-        elif COMPUTER_BOARD[column][row] == "@":
-            board[column][row] = "\u001b[31mX\u001b[0m"
+        elif COMPUTER_BOARD[row][column] == "@":
+            board[row][column] = "\u001b[31mX\u001b[0m"
             print("It's a hit, Admiral!")
         else:
-            board[column][row] = "O"
+            board[row][column] = "O"
             print("It's a miss, Admiral")
         print_board(PLAYER_TARGET_BOARD)
     else:
-        column, row = computer_coordinates()
-        if board[column][row] == "O":
+        row, column = computer_coordinates()
+        if board[row][column] == "O":
             turn(board)
-        elif board[column][row] == "\u001b[31mX\u001b[0m":
+        elif board[row][column] == "\u001b[31mX\u001b[0m":
             turn(board)
-        elif PLAYER_BOARD[column][row] == "@":
-            board[column][row] = "\u001b[31mX\u001b[0m"
+        elif PLAYER_BOARD[row][column] == "@":
+            board[row][column] = "\u001b[31mX\u001b[0m"
             print("We're hit, Admiral!")
         else:
-            board[column][row] = "O"
+            board[row][column] = "O"
             print("They missed us, Admiral")
 
 
@@ -197,7 +197,10 @@ def end_game():
     Adds a message indicating how to play again
     """
     print("If you'd like to play again, please refresh your browser")
+    print("or hit run program")
+    time.sleep(2)
     print("See you soon!")
+
 
 start_game()
 end_game()
